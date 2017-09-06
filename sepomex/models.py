@@ -31,6 +31,10 @@ class MXEstado(models.Model):
 
     class Meta:
         unique_together = ('nombre', 'abbr')
+        ordering = ('nombre',)
+        verbose_name = 'Estado'
+        verbose_name_plural = 'Estados'
+
 
     def __unicode__(self):
         return u'{0} - {1}'.format(self.abbr, self.nombre)
@@ -43,6 +47,9 @@ class MXMunicipio(models.Model):
 
     class Meta:
         unique_together = ('clave', 'nombre', 'mx_estado')
+        ordering = ('mx_estado','nombre')
+        verbose_name = 'Municipio'
+        verbose_name_plural = 'Municipios' 
 
     def __unicode__(self):
         return self.nombre
@@ -53,6 +60,11 @@ class MXCiudad(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+    class Meta:
+        ordering = ('mx_estado','nombre')
+        verbose_name = 'Ciudad'
+        verbose_name_plural = 'Ciudades'
 
 
 class MXAsentamiento(models.Model):
@@ -66,3 +78,9 @@ class MXAsentamiento(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+    class Meta:
+        ordering = ('mx_municipio','nombre')
+        verbose_name = 'Asentamiento'
+        verbose_name_plural = 'Asentamientos'
+

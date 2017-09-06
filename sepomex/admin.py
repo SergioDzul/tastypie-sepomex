@@ -20,7 +20,7 @@ class CiudadAdmin(admin.ModelAdmin):
     search_fields = ('nombre',)
 
 class AsentamientoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'mx_ciudad', 'mx_municipio', 'tipo_asentamiento', 'zona', 'cp')
+    list_display = ('nombre', 'mx_municipio', 'tipo_asentamiento', 'zona', 'cp')
     list_filter = ('zona',)
     search_fields = ('cp', 'nombre')
 
