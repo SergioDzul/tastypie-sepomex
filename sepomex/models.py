@@ -57,7 +57,6 @@ class MXCiudad(models.Model):
 
 class MXAsentamiento(models.Model):
     nombre = models.CharField(max_length=200)
-
     mx_municipio = models.ForeignKey(MXMunicipio, related_name='municipio')
     mx_ciudad = models.ForeignKey(MXCiudad, related_name="ciudad")
     tipo_asentamiento = models.CharField(max_length=100)
