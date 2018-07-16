@@ -43,7 +43,7 @@ class MXEstado(models.Model):
 class MXMunicipio(models.Model):
     nombre = models.CharField(max_length=200)
     clave = models.CharField(max_length=10)
-    mx_estado = models.ForeignKey(MXEstado, related_name='municipios')
+    mx_estado = models.ForeignKey(MXEstado, related_name='municipios', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('clave', 'nombre', 'mx_estado')
@@ -56,7 +56,7 @@ class MXMunicipio(models.Model):
 
 class MXCiudad(models.Model):
     nombre = models.CharField(max_length=200)
-    mx_estado = models.ForeignKey(MXEstado, related_name="ciudades")
+    mx_estado = models.ForeignKey(MXEstado, related_name="ciudades", on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.nombre
@@ -69,8 +69,8 @@ class MXCiudad(models.Model):
 
 class MXAsentamiento(models.Model):
     nombre = models.CharField(max_length=200)
-    mx_municipio = models.ForeignKey(MXMunicipio, related_name='asentamientos')
-    mx_ciudad = models.ForeignKey(MXCiudad, related_name="asentamientos")
+    mx_municipio = models.ForeignKey(MXMunicipio, related_name='asentamientos', on_delete=models.CASCADE)
+    mx_ciudad = models.ForeignKey(MXCiudad, related_name="asentamientos", on_delete=models.CASCADE)
     tipo_asentamiento = models.CharField(max_length=100)
     zona = models.CharField(max_length=100)
     cp = models.CharField(max_length=5, null=True)
